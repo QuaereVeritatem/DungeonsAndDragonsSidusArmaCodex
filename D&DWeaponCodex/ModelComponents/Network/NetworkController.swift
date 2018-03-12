@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+/*
+// DELETE THIS
 class NetworkController1 {
   func loadQuestions(withCompletion completion: @escaping ([WeaponModel]?) -> Void) {
     let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
@@ -58,3 +59,4 @@ class NetworkController {
     task.resume()
   }
 }
+*/

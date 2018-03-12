@@ -11,11 +11,11 @@ import Foundation
 
 /*
  TODO: (not neccesarily in this order)
- 1) Fix bug that pulls data After the screen comes up
+ 1) Fix bug that pulls data After the screen comes up 
  2) Put pickerview methods in on class/file
  3) change the font in the pickerview to SF UI Text ??// ck to see if this is still true
  4) store JSON pull somewhere
  5) center properties text in properties banner(vertically)
  6) subtype and type as well as other attributes have multiple names (need enums)
- 7) change logo/Icon [open book with weapons on the pages]
+ 7) change logo/Icon (icon book smaller than d&D equipment icon book)!!!!
  */

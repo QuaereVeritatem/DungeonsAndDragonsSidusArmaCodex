@@ -7,7 +7,8 @@
 //
 
 import Foundation
-
+/*
 struct ApiWrapper {
   let items: [Serialization]
 }
+*/

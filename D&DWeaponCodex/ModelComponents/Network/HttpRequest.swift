@@ -8,6 +8,7 @@
 
 import Foundation
 
+// 
 // implement URLSession to grab the data using an HTTP request
 /* class HttpRequest {
   let urlString = BaseUrl

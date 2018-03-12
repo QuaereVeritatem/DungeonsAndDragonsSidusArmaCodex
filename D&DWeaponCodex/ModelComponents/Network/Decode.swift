@@ -8,7 +8,8 @@
 
 import Foundation
 
-// class to convert JSON into data type we need and parse as well
+//DELETE THIS
+// class to convert JSON into data type we need and parse as well (not in use)
 /*
 class Decode {
   

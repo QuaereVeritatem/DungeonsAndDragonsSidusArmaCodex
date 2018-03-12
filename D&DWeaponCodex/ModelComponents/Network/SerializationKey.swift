@@ -8,6 +8,8 @@
 
 import Foundation
 
+// not in use but but will be used when we start using generics instead of specific types
+/*
 typealias Serialization = [String: Any]
 
 protocol SerializationKey {
@@ -33,3 +35,4 @@ extension Dictionary where Key == String, Value: Any {
     return self[key.stringValue] as? V
   }
 }
+*/

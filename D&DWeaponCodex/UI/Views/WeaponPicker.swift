@@ -8,9 +8,10 @@
 
 import UIKit
 
+// we will eventually put pickerView connection here
 class WeaponPicker: UIPickerView {
 
-  // var pickerData: [String] = [String]()
+  
   
   
 }

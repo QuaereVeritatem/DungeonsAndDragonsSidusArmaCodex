@@ -12,4 +12,5 @@ import Foundation
 
 // original BaseUrl is http://dnd5eapi.co/api/
 let BaseUrl: String = "http://dnd5eapi.co/api/equipment"
-let WeaponUrl: String = "http://dnd5eapi.co/api/equipment"  //not exactly right
+// weapons are located from "http://dnd5eapi.co/api/equipment/1" through "http://dnd5eapi.co/api/equipment/37"
+let WeaponUrl: String = "http://dnd5eapi.co/api/equipment"

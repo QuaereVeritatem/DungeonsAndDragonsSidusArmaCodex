@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+/*
 protocol NetworkRequest: class {
   associatedtype WeaponModel
   func load(withCompletion completion: @escaping (WeaponModel?) -> Void)
@@ -50,3 +51,4 @@ extension ImageRequest: NetworkRequest {
     load(url, withCompletion: completion)
   }
 }
+*/

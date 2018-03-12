@@ -11,7 +11,6 @@
 
 import Foundation
 
-
 struct DnDResultAPICall: Codable {
   let count: IntegerLiteralType
   let results: [EquipmentModel]
@@ -26,7 +25,6 @@ struct DnDResultAPICall: Codable {
     case results = "results"
   }
 }
-
 
 struct WeaponModel: Codable {
   let id: String
@@ -75,7 +73,6 @@ struct WeaponModel: Codable {
     case url = "url"
   }
 }
-
 
 struct Cost: Codable {
   let quantity: IntegerLiteralType
@@ -189,37 +186,31 @@ struct Properties: Codable {
   let name: String
   let url: String
  
-  
   init(url: String, name: String){
     self.name = name
     self.url = url
-    
   }
   
   enum CodingKeys: String, CodingKey {
     case name = "name"
     case url = "url"
-    
   }
 }
 
 // EquipmentModel will handle both Armor and Weapons
-
 struct EquipmentModel: Codable {
   let id: String?
   let index: IntegerLiteralType?
   let name: String
-  
   // Types
   let equipmentCategory: String?
-  
   //Sub-Types
   let weaponCategory: String?  
   let armorCategory: String?
   let gearCategory: String?
   let toolCategory: String?
   let vehicleCategory: String?
-  
+  // misc
   let weaponRange: String?
   let categoryRange: String?
   let armorClass: ArmorClass?
@@ -230,10 +221,8 @@ struct EquipmentModel: Codable {
   let weight: Float64?
   let cost: Cost?
   let url: String?
-
   
   init(id: String?, index: IntegerLiteralType?, name: String, equipmentCategory: String?, weaponCategory: String?, armorCategory: String?, gearCategory: String?, toolCategory: String?, vehicleCategory: String?, weaponRange: String?, categoryRange: String?, armorClass: ArmorClass?, damage: Damage?, properties: [Properties]?, strength: String?, stealth: String?, weight: Float64, cost: Cost, url: String ){
-    
     self.id = id
     self.index = index
     self.name = name
@@ -260,7 +249,6 @@ struct EquipmentModel: Codable {
     case index = "index"
     case name = "name"
     case equipmentCategory = "equipment_category"
-    
     // DandD API F**ked up and typed their category as "weapon_category:" (yes, they included :)
     case weaponCategory = "weapon_category:"
     case armorCategory = "armor_category"

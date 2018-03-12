@@ -9,22 +9,20 @@
 
 import UIKit
 
+// remove all logic form this viewcontroller! 
 class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-
+  // variables
   private let dataModel = DataModel()
-  
-  @IBOutlet weak var weaponPicker: UIPickerView!
   var pickerData: [String] = [String]()
   var equipMod = [EquipmentModel]()
   var weapMod = [EquipmentModel]()
   var tempInt = 1
-  
-  
+  // Main selection PickerView
+  @IBOutlet weak var weaponPicker: UIPickerView!
   // Banner under pickerview
   @IBOutlet weak var itemType: UILabel!
   @IBOutlet weak var subType: UILabel!
   @IBOutlet weak var damageType: UILabel!
-  
   // Big Banner
   @IBOutlet weak var rangeLabel: UILabel!
   @IBOutlet weak var weaponCategoryLabel: UILabel!
@@ -34,89 +32,49 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   @IBOutlet weak var propertyLabel: UILabel!
   @IBOutlet weak var costLabel: UILabel!
   @IBOutlet weak var weightLabel: UILabel!
-  
   // reference banner
   @IBOutlet weak var urlLabel: UILabel!
   
-  //var container = encoder.container(keyedBy: CodingKeys.self)
-  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
-    
     // Connect data:
     self.weaponPicker.delegate = self
     self.weaponPicker.dataSource = self
-    
     // Setting up delegate
     dataModel.delegate = self
     dataModel.requestData()
-    
-    // Input data into the Array:
-    //pickerData = []
-    
-    //equipMod = RequestAndParse.init().reqNParse()
-    
-    dataModel.requestData()
-    
     for loopCount in 0...36 {
       let urlString = BaseUrl + "/" + "\(loopCount + 1)"
       // ****  optional at end will cause program to crash!!!!
       guard let url = URL(string: urlString) else { return }
-      
-      
       URLSession.shared.dataTask(with: url) { (data, response, error) in
         if error != nil {
           print(error!.localizedDescription)
         }
-        
         guard let data = data else { return }
-        
         //Implement JSON decoding and parsing
         do {
-          
-          //Decode retrived data with JSONDecoder and assing type of Article object...an array of Results
-          //let endPointData = try JSONDecoder().decode(DnDResultAPICall.self, from: data) //this was at root endpoint
-          let endPointData = try JSONDecoder().decode(EquipmentModel.self, from: data)
-          self.weapMod.append(endPointData)
-          self.pickerData.append(endPointData.name)
-          //print(self.pickerData)
-          //print(self.weapMod)
-          //print(endPointData)
-          //Get back to the main queue after # secs
-          DispatchQueue.main.async {
-            // this calls it everytime..instead lets call when we update(didselectRow)
-            //self.updateTheLabels(weapon: endPointData)
-          }
-          
-        } catch let jsonError {
+            //Decode retrived data with JSONDecoder and assing type of Article object...an array of Results
+            let endPointData = try JSONDecoder().decode(EquipmentModel.self, from: data)
+            self.weapMod.append(endPointData)
+            self.pickerData.append(endPointData.name)
+            //Get back to the main queue after # secs
+            DispatchQueue.main.async {
+              // this calls it everytime..instead lets call when we update(didselectRow)
+              //self.updateTheLabels(weapon: endPointData)
+              self.weaponPicker.reloadAllComponents()
+              self.updateTheLabels(weapon: self.weapMod.first!)
+            }
+          } catch let jsonError {
           print(jsonError)
-        }
-        
-        
+          }
         }.resume()
-      
-      
-      
     }
-    
-
-  }
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
   }
 
   // this will change all the labels to the appropriate json data...we can tie this to a label from pickerview
   func updateTheLabels(weapon: EquipmentModel) {
-    
     var allPropLabel: String = ""
-    //weaponPicker.reloadAllComponents()
-    // *** self.pickerView(weapon.name)
-    //self.uuid.text = pickerDataSource[row]
-    // self.weaponPicker.dataSource = weapon.name as! UIPickerViewDataSource
-   // let title = pickerView(weaponPicker, titleForRow: weapon.index!, forComponent: 0)
-    
     itemType.text = weapon.equipmentCategory
     subType.text = weapon.weaponCategory
     damageType.text = String(describing: weapon.index!)
@@ -125,15 +83,12 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     damageDiceLabel.text =  String(describing: weapon.damage!.diceCount)
     damageValueLabel.text =  String(describing: weapon.damage!.diceValue)
     damageTypeLabel.text = weapon.damage?.damageType.name
-    
-    // I need to change the banner size to make room for an array of properties
-    //propertyLabel.text = getNumbers(array: weapon.properties![0])
+    // this logic should be in a function (and not in the VC)
     for pLoop in weapon.properties! {
       allPropLabel.append(String(describing:pLoop.name) + ". ")
       print(allPropLabel)
     }
-     propertyLabel.text =  allPropLabel
-    
+    propertyLabel.text =  allPropLabel
     costLabel.text  = String(describing: weapon.cost!.quantity) + " " + (weapon.cost!.unit)
     weightLabel.text = String(describing: weapon.weight!)
     urlLabel.text = weapon.url
@@ -146,16 +101,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
   
   // The number of rows of data
   func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-    // json call is asynchronous so equipmod could be nil when the return hits
-    // *** The problem now is UI is loading before JSON finishes downloading ****
-    return 37
+    var subCount = 37
+    if pickerData.count < 2 {
+      // SubCount gets used (as init value)
+    } else {
+      subCount = pickerData.count
+    }
+    return subCount
   }
   
   // The data to return for the row and component (column) that's being passed in
   func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-    //let title = weapMod[row]
-    
-    //return weapMod[weapMod.count - 1].name
     return pickerData[row]
   }
 
@@ -166,17 +122,16 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     weaponPicker.reloadAllComponents()
     // change labels based on the selection from the pickerview
     self.updateTheLabels(weapon: weapMod[row])
-     //print("The count for equipMod is \(equipMod.count)")
   }
   
   // change the font in the pickerview to SF UI Text
   func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
     var titleData = ""
-    if weapMod.count > 0 {
-    titleData = weapMod[row].name //pickerData[row]
+    if weapMod.count > 5 {
+      titleData = weapMod[row].name //pickerData[row]
     } else {
-      if pickerData.count > 0 {
-    titleData = pickerData[row]
+      if pickerData.count > 5 {
+        titleData = pickerData[row]
       }
       titleData = "Swipe up to Load Weapons"
     }
@@ -221,7 +176,6 @@ class DataModel {
 
 extension ViewController: DataModelDelegate {
   func didRecieveDataUpdate(data: String) {
-    //print(data)
   }
 }
 
