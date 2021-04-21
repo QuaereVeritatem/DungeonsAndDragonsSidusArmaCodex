@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		371F705A25F57A3200776FA2 /* WeaponListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F705925F57A3200776FA2 /* WeaponListModel.swift */; };
+		371F706025FD28FD00776FA2 /* CodableBundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371F705F25FD28FD00776FA2 /* CodableBundleExtension.swift */; };
 		3763E35B1FE7D449003F3204 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763E35A1FE7D449003F3204 /* AppDelegate.swift */; };
 		3763E35D1FE7D449003F3204 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763E35C1FE7D449003F3204 /* ViewController.swift */; };
 		3763E3601FE7D449003F3204 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3763E35E1FE7D449003F3204 /* Main.storyboard */; };
@@ -22,6 +24,7 @@
 		3763E3A01FE9D39E003F3204 /* ParsingJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763E39F1FE9D39E003F3204 /* ParsingJSON.swift */; };
 		3763E3A21FE9D6AE003F3204 /* WeaponPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763E3A11FE9D6AE003F3204 /* WeaponPicker.swift */; };
 		3763E3A41FEA0082003F3204 /* ParseResultsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3763E3A31FEA0082003F3204 /* ParseResultsContainer.swift */; };
+		377C89D0262F807E002A03D6 /* MagicWeaponModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377C89CF262F807E002A03D6 /* MagicWeaponModel.swift */; };
 		377CB9E02005C3F00081E445 /* UrlRequestAndParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377CB9DF2005C3F00081E445 /* UrlRequestAndParser.swift */; };
 		377CB9E2200D7B4E0081E445 /* TODOList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377CB9E1200D7B4E0081E445 /* TODOList.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		371F705925F57A3200776FA2 /* WeaponListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponListModel.swift; sourceTree = "<group>"; };
+		371F705F25FD28FD00776FA2 /* CodableBundleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableBundleExtension.swift; sourceTree = "<group>"; };
 		3763E3571FE7D449003F3204 /* D&DWeaponCodex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "D&DWeaponCodex.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3763E35A1FE7D449003F3204 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3763E35C1FE7D449003F3204 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +70,7 @@
 		3763E39F1FE9D39E003F3204 /* ParsingJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParsingJSON.swift; sourceTree = "<group>"; };
 		3763E3A11FE9D6AE003F3204 /* WeaponPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeaponPicker.swift; sourceTree = "<group>"; };
 		3763E3A31FEA0082003F3204 /* ParseResultsContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseResultsContainer.swift; sourceTree = "<group>"; };
+		377C89CF262F807E002A03D6 /* MagicWeaponModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagicWeaponModel.swift; sourceTree = "<group>"; };
 		377CB9DF2005C3F00081E445 /* UrlRequestAndParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlRequestAndParser.swift; sourceTree = "<group>"; };
 		377CB9E1200D7B4E0081E445 /* TODOList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODOList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -94,6 +100,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		371F705E25FD28D100776FA2 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				371F705F25FD28FD00776FA2 /* CodableBundleExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		3763E34E1FE7D448003F3204 = {
 			isa = PBXGroup;
 			children = (
@@ -117,6 +131,7 @@
 		3763E3591FE7D449003F3204 /* D&DWeaponCodex */ = {
 			isa = PBXGroup;
 			children = (
+				371F705E25FD28D100776FA2 /* Extension */,
 				3763E38F1FE9BDE6003F3204 /* UI */,
 				3763E38E1FE9BDE2003F3204 /* Controllers */,
 				3763E38D1FE9BDDE003F3204 /* ModelComponents */,
@@ -238,6 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				3763E3991FE9C124003F3204 /* WeaponModel.swift */,
+				371F705925F57A3200776FA2 /* WeaponListModel.swift */,
+				377C89CF262F807E002A03D6 /* MagicWeaponModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -389,13 +406,16 @@
 				3763E35D1FE7D449003F3204 /* ViewController.swift in Sources */,
 				3763E3A41FEA0082003F3204 /* ParseResultsContainer.swift in Sources */,
 				377CB9E2200D7B4E0081E445 /* TODOList.swift in Sources */,
+				371F705A25F57A3200776FA2 /* WeaponListModel.swift in Sources */,
 				3763E39C1FE9C826003F3204 /* BaseUrl.swift in Sources */,
 				377CB9E02005C3F00081E445 /* UrlRequestAndParser.swift in Sources */,
 				3763E35B1FE7D449003F3204 /* AppDelegate.swift in Sources */,
+				377C89D0262F807E002A03D6 /* MagicWeaponModel.swift in Sources */,
 				3763E3A01FE9D39E003F3204 /* ParsingJSON.swift in Sources */,
 				3763E3631FE7D449003F3204 /* D_DWeaponCodex.xcdatamodeld in Sources */,
 				3763E3A21FE9D6AE003F3204 /* WeaponPicker.swift in Sources */,
 				3763E39A1FE9C124003F3204 /* WeaponModel.swift in Sources */,
+				371F706025FD28FD00776FA2 /* CodableBundleExtension.swift in Sources */,
 				3763E39E1FE9CFC9003F3204 /* GetThatJSON.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

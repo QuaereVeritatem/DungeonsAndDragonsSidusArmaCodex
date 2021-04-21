@@ -11,7 +11,7 @@ import Foundation
 
 /*
  TODO: (not neccesarily in this order)
- 1) Fix bug that pulls data After the screen comes up 
+ 1) 
  2) Put pickerview methods in on class/file
  3) change the font in the pickerview to SF UI Text ??// ck to see if this is still true
  4) store JSON pull somewhere
@@ -19,3 +19,5 @@ import Foundation
  6) subtype and type as well as other attributes have multiple names (need enums)
  7) change logo/Icon (icon book smaller than d&D equipment icon book)!!!!
  */
+
+// new relationship names for entities with multiple relationships!!! top priority

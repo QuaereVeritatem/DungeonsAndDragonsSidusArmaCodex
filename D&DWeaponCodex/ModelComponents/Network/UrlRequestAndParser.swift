@@ -40,7 +40,7 @@ class RequestAndParse {
         //let endPointData = try JSONDecoder().decode(DnDResultAPICall.self, from: data) //this was at root endpoint
         let endPointData = try JSONDecoder().decode(EquipmentModel.self, from: data)
         self.moreWeapons.append(endPointData)
-        self.pickerNames.append(endPointData.name)
+        self.pickerNames.append(endPointData.name!)
          print(self.moreWeapons)
         //print(endPointData)
         //Get back to the main queue after # secs

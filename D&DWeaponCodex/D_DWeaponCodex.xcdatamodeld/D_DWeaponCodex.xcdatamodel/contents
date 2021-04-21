@@ -1,4 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17F77" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Armor" representedClassName="Armor" syncable="YES" codeGenerationType="class">
+        <attribute name="base" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="dex_bonus" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="max_bonus" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="equipment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Equipment" inverseName="armor" inverseEntity="Equipment" syncable="YES"/>
+    </entity>
+    <entity name="Equipment" representedClassName="Equipment" syncable="YES" codeGenerationType="class">
+        <attribute name="armorCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="categoryRange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="equipmentCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gearCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stealth" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="strength" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="toolCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vehicleCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weaponCategory" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weaponRange" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="weight" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="armor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Armor" inverseName="equipment" inverseEntity="Armor" syncable="YES"/>
+        <relationship name="property" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Property" syncable="YES"/>
+    </entity>
+    <entity name="Property" representedClassName="Property" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="equipment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Equipment" syncable="YES"/>
+    </entity>
+    <entity name="TheCost" representedClassName="TheCost" syncable="YES" codeGenerationType="class"/>
+    <entity name="TheDamage" representedClassName="TheDamage" syncable="YES" codeGenerationType="class"/>
+    <elements>
+        <element name="Equipment" positionX="-63" positionY="-18" width="128" height="300"/>
+        <element name="Armor" positionX="-54" positionY="108" width="128" height="105"/>
+        <element name="Property" positionX="-36" positionY="117" width="128" height="90"/>
+        <element name="TheDamage" positionX="-18" positionY="126" width="128" height="45"/>
+        <element name="TheCost" positionX="0" positionY="135" width="128" height="45"/>
+    </elements>
 </model>

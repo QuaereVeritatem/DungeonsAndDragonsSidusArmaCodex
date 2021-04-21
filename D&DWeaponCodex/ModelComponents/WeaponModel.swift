@@ -27,9 +27,8 @@ struct DnDResultAPICall: Codable {
 }
 
 struct WeaponModel: Codable {
-  let id: String
-  let index: IntegerLiteralType
-  let name: String
+  let index: String
+  let name: String?
   let type: String
   let subType: String
   let weaponRange: String
@@ -40,11 +39,10 @@ struct WeaponModel: Codable {
   let properties: [String]
   let url: String
  
-  init(id: String, index: IntegerLiteralType, name: String, type: String,
+  init(index: String, name: String?, type: String,
        subType: String, weaponRange: String, weaponCategory: String,
        cost: Cost, damage: Damage, weight: Float64, properties: [String],
        url: String ){
-    self.id = id
     self.index = index
     self.name = name
     self.type = type
@@ -59,7 +57,6 @@ struct WeaponModel: Codable {
   }
 
   enum CodingKeys: String, CodingKey {
-    case id = "_id"
     case index = "index"
     case name = "name"
     case type = "type"
@@ -90,42 +87,41 @@ struct Cost: Codable {
 }
 
 struct Damage: Codable {
-  let diceCount: IntegerLiteralType
-  let diceValue: IntegerLiteralType
+  let diceCount: String?
   let damageType: DamageType
 
-  init(diceCount: IntegerLiteralType, diceValue: IntegerLiteralType, damageType: DamageType){
+  init(diceCount: String?, damageType: DamageType){
     self.diceCount = diceCount
-    self.diceValue = diceValue
     self.damageType = damageType
   }
 
   enum CodingKeys: String, CodingKey {
-    case diceCount = "dice_count"
-    case diceValue = "dice_value"
+    case diceCount = "damage_dice"
     case damageType = "damage_type"
   }
 }
 
 struct DamageType: Codable {
+  let index: String
   let url: String
   let name: String
 
-  init(url: String, name: String){
+  init(index:String, url: String, name: String){
+    self.index = index
     self.url = url
     self.name = name
   }
  
   enum CodingKeys: String, CodingKey {
+    case index = "index"
     case url = "url"
     case name = "name"
   }
 }
 
 struct ArmorModel: Codable {
-  let id: String
-  let index: IntegerLiteralType
-  let name: String
+  let index: String
+  let name: String?
   let type: String
   let subType: String
   let armorClass: ArmorClass
@@ -135,8 +131,7 @@ struct ArmorModel: Codable {
   let cost: Cost
   let url: String
 
-  init(id: String, index: IntegerLiteralType, name: String, type: String, subType: String, armorClass: ArmorClass, strength: String, stealth: String, weight: Float64, cost: Cost, url: String){
-    self.id = id
+  init(index: String, name: String?, type: String, subType: String, armorClass: ArmorClass, strength: String, stealth: String, weight: Float64, cost: Cost, url: String){
     self.index = index
     self.name = name
     self.type = type
@@ -150,7 +145,6 @@ struct ArmorModel: Codable {
   }
 
   enum CodingKeys: String, CodingKey {
-    case id = "_id"
     case index = "index"
     case name = "name"
     case type = "type"
@@ -183,10 +177,10 @@ struct ArmorClass: Codable {
 }
 
 struct Properties: Codable {
-  let name: String
+  let name: String?
   let url: String
  
-  init(url: String, name: String){
+  init(name: String?, url: String){
     self.name = name
     self.url = url
   }
@@ -199,11 +193,10 @@ struct Properties: Codable {
 
 // EquipmentModel will handle both Armor and Weapons
 struct EquipmentModel: Codable {
-  let id: String?
-  let index: IntegerLiteralType?
-  let name: String
+  let index: String?
+  let name: String?
   // Types
-  let equipmentCategory: String?
+  let equipmentCategory: EquipmentCategory?
   //Sub-Types
   let weaponCategory: String?  
   let armorCategory: String?
@@ -218,12 +211,13 @@ struct EquipmentModel: Codable {
   let properties: [Properties]?
   let strength: String?
   let stealth: String?
+  let range: Range?
   let weight: Float64?
   let cost: Cost?
+  let desc: [String]?
   let url: String?
   
-  init(id: String?, index: IntegerLiteralType?, name: String, equipmentCategory: String?, weaponCategory: String?, armorCategory: String?, gearCategory: String?, toolCategory: String?, vehicleCategory: String?, weaponRange: String?, categoryRange: String?, armorClass: ArmorClass?, damage: Damage?, properties: [Properties]?, strength: String?, stealth: String?, weight: Float64, cost: Cost, url: String ){
-    self.id = id
+  init(index: String?, name: String?, equipmentCategory: EquipmentCategory?, weaponCategory: String?, armorCategory: String?, gearCategory: String?, toolCategory: String?, vehicleCategory: String?, weaponRange: String?, categoryRange: String?, armorClass: ArmorClass?, damage: Damage?, properties: [Properties]?, strength: String?, stealth: String?, range: Range?, weight: Float64, cost: Cost, desc: [String]?, url: String ){
     self.index = index
     self.name = name
     self.equipmentCategory = equipmentCategory
@@ -239,18 +233,20 @@ struct EquipmentModel: Codable {
     self.properties = properties
     self.strength = strength
     self.stealth = stealth
+    self.range = range
     self.weight = weight
     self.cost = cost
+    self.desc = desc
     self.url = url
   }
  
   enum CodingKeys: String, CodingKey {
-    case id = "_id"
     case index = "index"
     case name = "name"
     case equipmentCategory = "equipment_category"
     // DandD API F**ked up and typed their category as "weapon_category:" (yes, they included :)
-    case weaponCategory = "weapon_category:"
+    //update: they finally fixed their mess up
+    case weaponCategory = "weapon_category"
     case armorCategory = "armor_category"
     case gearCategory = "gear_category"
     case toolCategory = "tool_category"
@@ -262,9 +258,44 @@ struct EquipmentModel: Codable {
     case properties = "properties"
     case strength = "strength"
     case stealth = "stealth"
+    case range = "range"
     case weight = "weight"
     case cost = "cost"
+    case desc = "desc"
     case url = "url"
+  }
+}
+
+struct EquipmentCategory: Codable {
+  let index: String
+  let name: String
+  let url: String
+  
+  init(index: String, name: String, url: String) {
+    self.index = index
+    self.name = name
+    self.url = url
+  }
+  
+  enum CodingKeys: String, CodingKey {
+    case index = "index"
+    case name = "name"
+    case url = "url"
+  }
+}
+
+struct Range: Codable {
+  let normal: Int64?
+  let long: Int64?
+  
+  init(normal: Int64?, long: Int64?) {
+    self.normal = normal
+    self.long = long
+  }
+  
+  enum CodingKeys: String, CodingKey {
+    case normal = "normal"
+    case long = "long"
   }
 }
 
